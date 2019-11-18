@@ -5,13 +5,13 @@ import com.typesafe.sbt.pgp.PgpKeys
 import sbtcrossproject.CrossProject
 import sbtcrossproject.CrossType
 
-val Org = "org.scoverage"
+val Org = "eu.epitech.scoverage"
 val ScalatestVersion = "3.0.8"
 
 val appSettings = Seq(
     organization := Org,
-    scalaVersion := "2.12.8",
-    crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.10", "2.13.1"),
+    scalaVersion := "2.13.1",
+    crossScalaVersions := Seq("2.12.10", "2.13.1"),
     fork in Test := false,
     publishMavenStyle := true,
     publishArtifact in Test := false,
@@ -20,9 +20,9 @@ val appSettings = Seq(
     concurrentRestrictions in Global += Tags.limit(Tags.Test, 1),
     publishTo := {
       if (isSnapshot.value)
-        Some("snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
+        Some("snapshots" at "https://nexus.epitest.eu/repository/maven-snapshots")
       else
-        Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2")
+        Some("releases" at "https://nexus.epitest.eu/repository/maven-releases")
     },
     pomExtra := {
       <url>https://github.com/scoverage/scalac-scoverage-plugin</url>
